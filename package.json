@@ -1,0 +1,24 @@
+{
+  "name": "daisy",
+  "version": "1.0.0",
+  "description": "HTML5 Isometric Game Engine",
+  "main": "src/daisy.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Konquer/daisy.git"
+  },
+  "author": "Sindre Slungaard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Konquer/daisy/issues"
+  },
+  "homepage": "https://github.com/Konquer/daisy#readme",
+  "dependencies": {
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9",
+    "webpack-dev-server": "^3.1.0"
+  }
+}
