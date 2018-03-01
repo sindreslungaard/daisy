@@ -1,1 +1,3 @@
-console.log("test");
+const bob = "test";
+
+console.log(bob);

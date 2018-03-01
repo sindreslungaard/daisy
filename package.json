@@ -2,9 +2,10 @@
   "name": "daisy",
   "version": "1.0.0",
   "description": "HTML5 Isometric Game Engine",
-  "main": "src/daisy.js",
+  "main": "./src/daisy.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js"
+    "dev": "webpack-dev-server --open --hot --port 8060",
+    "dist": "webpack --config webpack.config.js -p"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,12 @@
   "homepage": "https://github.com/Konquer/daisy#readme",
   "dependencies": {
     "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.9",
+    "webpack-cli": "^2.0.9"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.3",
+    "babel-preset-es2015": "^6.24.1",
     "webpack-dev-server": "^3.1.0"
   }
 }

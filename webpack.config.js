@@ -1,19 +1,36 @@
-const webpack = require('webpack');
-const path = require('path');
+var path = require('path')
+var webpack = require('webpack')
 
-var config = {
-  context: __dirname + '/src', // `__dirname` is root of project and `src` is source
-  entry: {
-    app: './daisy.js',
-  },
+module.exports = {
+  entry: './src/daisy.js',
   output: {
-    path: __dirname + '/dist', // `dist` is the destination
-    publicPath: "/assets/",
-    filename: 'daisy.js',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'daisy.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015']
+            }
+          }
+        ],
+        exclude: /node_modules/
+      }
+    ]
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'src'),    // New
+    historyApiFallback: true,
+    noInfo: true,
+    overlay: true
   },
-};
-
-module.exports = config;
+  performance: {
+    hints: false
+  },
+  devtool: '#eval-source-map'
+}
