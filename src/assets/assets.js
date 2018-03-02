@@ -30,5 +30,18 @@ export default class Assets {
   }
 
 
+  // Load an array of images, may serve as a preloader
+  loadImages(images) {
+    let promises = [];
+
+    for(var i = 0; i < images.length; i++) {
+      let image = images[i];
+      promises.push(this.loadImage(image.name, image.path));
+    }
+
+    return Promise.all(promises);
+  }
+
+
 
 }
