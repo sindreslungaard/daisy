@@ -6,7 +6,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'daisy.js'
+    filename: 'daisy.js',
+    library: 'daisy',
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   module: {
     rules: [
@@ -16,7 +19,11 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['es2015']
+              presets: ['es2015'],
+              plugins: [
+                "transform-class-properties",
+                "syntax-class-properties"
+              ]
             }
           }
         ],

@@ -1,3 +1,9 @@
-const bob = "test";
+import Assets from './assets/assets';
 
-console.log(bob);
+let daisy = {
+
+  assets: new Assets()
+
+};
+
+module.exports = daisy;
