@@ -3,6 +3,17 @@
   <script src="/dist/daisy.js"></script>
   <script>
 
+    daisy.assets.loadImages([
+      { name: 'tile2', path: './images/tile.png' },
+      { name: 'tile3', path: './images/tile.png' }
+    ])
+    .then(() => {
+      console.log("all images loaded");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
     daisy.assets.loadImage('tile', './images/tile.png')
     .then(() => {
       console.log('image loaded');
