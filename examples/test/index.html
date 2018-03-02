@@ -1,5 +1,16 @@
 <html>
 <body>
   <script src="/dist/daisy.js"></script>
+  <script>
+
+    daisy.assets.loadImage('tile', './images/tile.png')
+    .then(() => {
+      console.log('image loaded');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  </script>
 </body>
 </html>
