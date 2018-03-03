@@ -1,8 +1,12 @@
 import Assets from './assets/assets';
+import Cameras from './cameras/cameras';
+import Scenes from './scenes/scenes';
 
-let daisy = {
+const daisy = {
 
-  assets: new Assets()
+  assets: new Assets(),
+  cameras: new Cameras(),
+  scenes: new Scenes()
 
 };
 

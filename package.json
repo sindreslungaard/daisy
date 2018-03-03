@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Konquer/daisy#readme",
   "dependencies": {
     "image-preloader": "^1.1.1",
+    "point-geometry": "^0.1.0",
     "webpack": "^4.0.1",
     "webpack-cli": "^2.0.10"
   },
