@@ -1,19 +1,25 @@
 <html>
 <body>
   <script src="/dist/daisy.js"></script>
+
+  <canvas id="mainCanvas"></canvas>
+
   <script>
 
+    // load multiple images
     daisy.assets.loadImages([
       { name: 'tile2', path: './images/tile.png' },
       { name: 'tile3', path: './images/tile.png' }
     ])
     .then(() => {
       console.log("all images loaded");
+      start();
     })
     .catch((error) => {
       console.log(error);
     });
 
+    // load a single image
     daisy.assets.loadImage('tile', './images/tile.png')
     .then(() => {
       console.log('image loaded');
@@ -21,6 +27,16 @@
     .catch((error) => {
       console.log(error);
     });
+
+    // call after loading images
+    function start() {
+
+      var camera = daisy.cameras.create('mainCamera', 0, 0).use();
+      var scene = daisy.scenes.create('game', 'mainCanvas');
+
+
+
+    }
 
   </script>
 </body>
