@@ -1,9 +1,12 @@
+import TileMap from './map/tilemap';
+
 export default class Scene {
 
   constructor(canvas_id) {
     this.render = true;
     this.canvas = document.getElementById(canvas_id);
     this.context = this.canvas.getContext("2d");
+    this.tilemap = null;
   }
 
 
@@ -11,10 +14,13 @@ export default class Scene {
   adjust(w, h) {
     this.canvas.width = w ? w : window.innerWidth;
     this.canvas.height = h ? h : window.innerHeight;
+    return this;
   }
 
-  createMap() {
 
+  createTileMap(data) {
+    this.tilemap = new TileMap(data);
+    return this.tilemap;
   }
 
 
