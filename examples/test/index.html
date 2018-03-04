@@ -1,8 +1,15 @@
 <html>
 <body>
+
+  <style>
+  body {
+    margin: 0;
+  }
+  </style>
+
   <script src="/dist/daisy.js"></script>
 
-  <canvas id="mainCanvas"></canvas>
+  <canvas id="mainCanvas" width="100%" height="100vh" style="background: #000"></canvas>
 
   <script>
 
@@ -32,9 +39,10 @@
     function start() {
 
       var camera = daisy.cameras.create('mainCamera', 0, 0).use();
-      var scene = daisy.scenes.create('game', 'mainCanvas');
+      var scene = daisy.scenes.create('game', 'mainCanvas').adjust();
 
-
+      scene.context.fillStyle="red";
+      scene.context.fillRect(10, 10, 5000, 5000);
 
     }
 
