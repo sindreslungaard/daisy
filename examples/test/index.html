@@ -41,8 +41,15 @@
       var camera = daisy.cameras.create('mainCamera', 0, 0).use();
       var scene = daisy.scenes.create('game', 'mainCanvas').adjust();
 
+      scene.createTileMap({
+        frameLength: 4,
+        tiles: "111111111111"
+      });
+
       scene.context.fillStyle="red";
       scene.context.fillRect(10, 10, 5000, 5000);
+
+      daisy.scenes.render();
 
     }
 

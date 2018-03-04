@@ -12,5 +12,11 @@ export default class Scenes {
     return scene;
   }
 
+  render() {
+    let self = this;
+    this.instances.forEach((scene, name, map) => {
+      scene.render();
+    })
+  }
 
 }

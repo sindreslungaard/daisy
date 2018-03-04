@@ -25,8 +25,8 @@ export default class Map {
   }
 
   valueFromMapData(x, y) {
-       let index = this.size.x * y;
-       return this.data.tiles.substring(index + x, index + x + 1);
+     let index = this.size.x * y;
+     return this.data.tiles.substring(index + x, index + x + 1);
   }
 
 
