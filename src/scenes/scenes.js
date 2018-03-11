@@ -16,7 +16,9 @@ export default class Scenes {
     let self = this;
     this.instances.forEach((scene, name, map) => {
       scene.render();
-    })
+    });
+
+    window.requestAnimationFrame(this.render.bind(this));
   }
 
 }

@@ -15,8 +15,8 @@
 
     // load multiple images
     daisy.assets.loadImages([
-      { name: 'tile2', path: './images/tile.png' },
-      { name: 'tile3', path: './images/tile.png' }
+      { name: 'tile', path: './images/bb_tile.png' },
+      { name: 'tile2', path: './images/tile.png' }
     ])
     .then(() => {
       console.log("all images loaded");
@@ -27,7 +27,7 @@
     });
 
     // load a single image
-    daisy.assets.loadImage('tile', './images/tile.png')
+    daisy.assets.loadImage('tile2', './images/tile.png')
     .then(() => {
       console.log('image loaded');
     })
@@ -43,11 +43,8 @@
 
       scene.createTileMap({
         frameLength: 4,
-        tiles: "111111111111"
+        tiles: "1111111111111111111111111111"
       });
-
-      scene.context.fillStyle="red";
-      scene.context.fillRect(10, 10, 5000, 5000);
 
       daisy.scenes.render();
 

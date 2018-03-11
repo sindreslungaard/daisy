@@ -11,6 +11,9 @@ export default class Map {
     };
 
     this.tiles = this.parseTileData();
+
+    this.tileSprite = null;
+    this.tileHoverSprite = null;
   }
 
   parseTileData() {
@@ -29,6 +32,8 @@ export default class Map {
      return this.data.tiles.substring(index + x, index + x + 1);
   }
 
-
+  getTile(x, y) {
+        return this.tiles[x][y];
+    }
 
 }

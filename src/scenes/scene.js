@@ -26,11 +26,21 @@ export default class Scene {
     if(!this.display)
       return false;
 
-    console.log("rendering!");
+    let tile = daisy.assets.images.get('tile');
+
+    for(var i = 0; i < this.tilemap.size.x; i++) {
+        for(var j = 0; j < this.tilemap.size.y; j++) {
+            if(this.tilemap.getTile(i, j).state != 0) {
+                // this.roomCanvas.getContext().drawImage(tile, camera.getX() + (j - i) * 32, camera.getY() + (j + i) * 16, tile.width, tile.height);
+                this.context.drawImage(tile, 500 + (j - i) * 16, 500 + (j + i) * 8, tile.width, tile.height);
+            }
+        }
+    }
+
   }
 
   drawTileMap() {
-    
+
   }
 
 
