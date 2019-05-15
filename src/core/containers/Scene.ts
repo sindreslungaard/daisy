@@ -32,4 +32,17 @@ export default class Scene {
 
     }
 
+    public addLayer(layer: Layer) {
+        layer.parent = this
+        this._layers.push(layer)
+        this._container.addChild(layer.container)
+    }
+
+    public removeLayer(layer: Layer) {
+        this._layers = this._layers.filter(x => {
+            this.container.removeChild(x.container)
+            return x !== layer
+        })
+    }
+
 }
