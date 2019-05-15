@@ -29,6 +29,10 @@ export default class App {
 
     }
 
+    get scenes(): Array<Scene> {
+        return this._scenes
+    }
+
     public addScene(scene: Scene) {
         scene.parent = this
         this._scenes.push(scene)
@@ -36,7 +40,17 @@ export default class App {
     }
 
     public removeScene(scene: Scene) {
-        this._scenes = this._scenes.filter(x => x !== scene)
+        this._scenes = this._scenes.filter(x => {
+            this._renderer.stage.removeChild(x.container)
+            return x !== scene
+        })
+    }
+
+    public makeSceneActive(scene: Scene) {
+        this._scenes.map(x => {
+            if(x !== scene)
+                this._renderer.stage.removeChild(x.container)
+        })
     }
 
     private update() {

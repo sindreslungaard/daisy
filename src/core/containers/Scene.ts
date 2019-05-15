@@ -23,4 +23,13 @@ export default class Scene {
         return this._container
     }
 
+    makeActive() {
+
+        if(!this._parent)
+            throw new Error("Scene must be added to the app before made active")
+
+        this._parent.makeSceneActive(this)
+
+    }
+
 }

@@ -4,12 +4,12 @@ const webpack = require('webpack');
 module.exports={
   mode: 'development',
   devtool: 'source-map',
-  entry: ['./src/libh.ts'],
+  entry: ['./src/daisy.ts'],
   output:{
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'libh.js',
-    library: 'libh',
+    filename: 'daisy.js',
+    library: 'daisy',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

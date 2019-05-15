@@ -7,6 +7,6 @@
     "moduleResolution": "node"
   },
   "files":[
-    "src/libh.ts"
+    "src/daisy.ts"
   ]
 }
