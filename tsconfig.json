@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es6",
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node"
+  },
+  "files":[
+    "src/libh.ts"
+  ]
+}

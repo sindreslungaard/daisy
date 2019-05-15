@@ -1,43 +1,35 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-module.exports = {
-  entry: './src/daisy.js',
-  output: {
+module.exports={
+  mode: 'development',
+  devtool: 'source-map',
+  entry: ['./src/libh.ts'],
+  output:{
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'daisy.js',
-    library: 'daisy',
+    filename: 'libh.js',
+    library: 'libh',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  module: {
-    rules: [
+  module:{
+    rules:[
       {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['es2015'],
-              plugins: [
-                "transform-class-properties",
-                "syntax-class-properties"
-              ]
-            }
-          }
-        ],
-        exclude: /node_modules/
+        test:/\.ts$/,
+        include: path.resolve(__dirname, "src"),
+        loader: 'ts-loader'
+      },
+      {
+        test: /\.png$/,
+        loader: "url-loader?mimetype=image/png"
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true,
-    noInfo: true,
-    overlay: true
+  resolve:{
+    extensions: [".webpack.js", ".web.js", ".ts", ".js"]
   },
-  performance: {
-    hints: false
-  },
-  devtool: '#eval-source-map'
+  watchOptions: {
+    ignored: ['node_modules']
+  }
 }
