@@ -3,8 +3,8 @@ import { Container } from 'pixi.js'
 
 export default class Layer {
 
-    private _parent?: Scene
-    private _container: Container
+    _parent?: Scene
+    _container: Container
 
     constructor() {
         
@@ -12,12 +12,18 @@ export default class Layer {
 
     }
 
-    set parent(parent: Scene) {
+    setParent(parent: Scene) {
         this._parent = parent
     }
 
-    get container(): Container {
+    getContainer(): Container {
         return this._container
+    }
+
+    update(delta: number) {
+        
+        
+
     }
 
 }

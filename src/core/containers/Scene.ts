@@ -15,6 +15,10 @@ export default class Scene {
 
     }
 
+    get layers(): Array<Layer> {
+        return this._layers
+    }
+
     set parent(parent: App) {
         this._parent = parent
     }
@@ -33,16 +37,21 @@ export default class Scene {
     }
 
     public addLayer(layer: Layer) {
-        layer.parent = this
+        layer.setParent(this)
         this._layers.push(layer)
-        this._container.addChild(layer.container)
+        this._container.addChild(layer.getContainer())
     }
 
     public removeLayer(layer: Layer) {
         this._layers = this._layers.filter(x => {
-            this.container.removeChild(x.container)
+            this.container.removeChild(x.getContainer())
             return x !== layer
         })
+    }
+
+    update(delta: number) {
+        for(let layer of this.layers)
+            layer.update(delta)
     }
 
 }

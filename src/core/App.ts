@@ -18,6 +18,9 @@ export default class App {
             height,
             backgroundColor
         })
+
+        this._renderer.stage.x = window.innerWidth / 2
+        this._renderer.stage.y = window.innerHeight / 2
         
         let element = document.createElement('div');
         element.setAttribute("id", "libh");
@@ -27,6 +30,10 @@ export default class App {
 
         this._renderer.ticker.add(this.update.bind(this))
 
+    }
+
+    get renderer(): PIXI.Application {
+        return this._renderer
     }
 
     get scenes(): Array<Scene> {
@@ -53,8 +60,9 @@ export default class App {
         })
     }
 
-    private update() {
-
+    private update(delta: number) {
+        for(let scene of this.scenes)
+            scene.update(delta)
     }
 
 }

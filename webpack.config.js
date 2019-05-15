@@ -9,7 +9,7 @@ module.exports={
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'daisy.js',
-    library: 'daisy',
+    library: 'Daisy',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
