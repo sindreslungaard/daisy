@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js'
 import Scene from './containers/Scene'
+import { MouseEvents, MouseMovedEventArgs } from './events/MouseEvents';
 
 export default class App {
 
@@ -7,7 +8,9 @@ export default class App {
     private _scenes: Array<Scene>
 
     constructor(width: number = window.innerWidth, height: number = window.innerHeight, backgroundColor: number = 0x000000) {
-        
+
+        MouseEvents.dispatch(new MouseMovedEventArgs(5, 1))
+
         this._scenes = []
 
         // Preserve quality of sprites when scaled

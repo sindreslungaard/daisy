@@ -27,6 +27,7 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
-    "pixi.js": "^5.0.2"
+    "pixi.js": "^5.0.2",
+    "strongly-typed-events": "^1.4.10"
   }
 }
