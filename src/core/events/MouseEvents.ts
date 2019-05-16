@@ -2,7 +2,17 @@ import { EventDispatcher, IEvent } from 'strongly-typed-events'
 
 export class MouseEvents {
 
+    private static _mouseDownEvent = new EventDispatcher<MouseEvents, MouseDownEventArgs>()
+    private static _mouseUpEvent = new EventDispatcher<MouseEvent, MouseUpEventArgs>()
     private static _mouseMovedEvent = new EventDispatcher<MouseEvents, MouseMovedEventArgs>()
+
+    public static get onMouseDown(): IEvent<MouseEvents, MouseDownEventArgs> {
+        return this._mouseDownEvent.asEvent()
+    }
+
+    public static get onMouseUp(): IEvent<MouseEvents, MouseUpEventArgs> {
+        return this._mouseUpEvent.asEvent()
+    }
 
     public static get onMouseMoved(): IEvent<MouseEvents, MouseMovedEventArgs> {
         return this._mouseMovedEvent.asEvent()
