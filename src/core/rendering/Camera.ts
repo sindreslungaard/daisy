@@ -1,20 +1,36 @@
 import Scene from '../containers/Scene'
 import Point from '../../utils/Point'
+import { MouseEvents } from '../events';
 
 export default class Camera {
 
     private _scene: Scene
     private _position: Point
-    private _lastFrame: number
-    private _delta: number
+
+    private _isDragging: boolean
 
     constructor(scene: Scene, x: number = 0, y: number = 0) {
+        
         this._scene = scene
         this._position = new Point(0, 0)
+
+        this._isDragging = false
+
         this.move(x, y)
 
-        this._lastFrame = performance.now()
-        this._delta = 0
+        MouseEvents.onMouseDown.subscribe((sender, eventArgs) => {
+            this._isDragging = true
+        })
+
+        MouseEvents.onMouseUp.subscribe((sender, eventArgs) => {
+            this._isDragging = false
+        })
+
+        MouseEvents.onMouseMoved.subscribe((sender, eventArgs) => {
+            if(this._isDragging)
+                this.move(eventArgs.x, eventArgs.y)
+        })
+
     }
 
     public get position() {

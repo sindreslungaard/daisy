@@ -3,7 +3,7 @@ import { EventDispatcher, IEvent } from 'strongly-typed-events'
 export class MouseEvents {
 
     private static _mouseDownEvent = new EventDispatcher<MouseEvents, MouseDownEventArgs>()
-    private static _mouseUpEvent = new EventDispatcher<MouseEvent, MouseUpEventArgs>()
+    private static _mouseUpEvent = new EventDispatcher<MouseEvents, MouseUpEventArgs>()
     private static _mouseMovedEvent = new EventDispatcher<MouseEvents, MouseMovedEventArgs>()
 
     public static get onMouseDown(): IEvent<MouseEvents, MouseDownEventArgs> {
@@ -20,12 +20,16 @@ export class MouseEvents {
 
     public static dispatch<T>(eventArgs: T) {
 
-        if(eventArgs instanceof MouseMovedEventArgs)
-            this._mouseMovedEvent.dispatch(this, eventArgs)
+        if(eventArgs instanceof MouseDownEventArgs)
+            this._mouseDownEvent.dispatch(this, eventArgs)
+
+        else if(eventArgs instanceof MouseUpEventArgs)
+            this._mouseUpEvent.dispatch(this, eventArgs)
+            
+        else if(eventArgs instanceof MouseMovedEventArgs)
+        this._mouseMovedEvent.dispatch(this, eventArgs)
 
     }
-
-
 
 }
 

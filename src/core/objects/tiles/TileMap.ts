@@ -59,6 +59,8 @@ export default class TileMap extends Layer {
     }
 
     update(delta: number) {
+
+        
         
     }
 
