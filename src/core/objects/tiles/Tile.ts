@@ -1,6 +1,6 @@
 import { Texture } from 'pixi.js'
 import GameObject from '../GameObject'
-import Sprite from '../../renderables/Sprite';
+import Sprite from '../../rendering/Sprite';
 
 export default class Tile extends GameObject {
 
