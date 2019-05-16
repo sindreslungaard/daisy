@@ -10,13 +10,11 @@ export default class Camera {
     private _isDragging: boolean
 
     constructor(scene: Scene, x: number = 0, y: number = 0) {
-        
+
         this._scene = scene
         this._position = new Point(0, 0)
 
         this._isDragging = false
-
-        this.move(x, y)
 
         MouseEvents.onMouseDown.subscribe((sender, eventArgs) => {
             this._isDragging = true
@@ -28,7 +26,7 @@ export default class Camera {
 
         MouseEvents.onMouseMoved.subscribe((sender, eventArgs) => {
             if(this._isDragging)
-                this.move(eventArgs.x, eventArgs.y)
+                this.move(eventArgs.x - this.position.x, eventArgs.y - this.position.y)
         })
 
     }
