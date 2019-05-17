@@ -9,8 +9,6 @@ export default class App {
 
     constructor(width: number = window.innerWidth, height: number = window.innerHeight, backgroundColor: number = 0x000000) {
 
-        MouseEvents.dispatch(new MouseMovedEventArgs(5, 1))
-
         this._scenes = []
 
         // Preserve quality of sprites when scaled
@@ -21,12 +19,8 @@ export default class App {
             height,
             backgroundColor
         })
-
-        this._renderer.stage.x = window.innerWidth / 2
-        this._renderer.stage.y = window.innerHeight / 2
         
         let element = document.createElement('div');
-        element.setAttribute("id", "libh");
         document.body.appendChild(element);
 
         element.appendChild(this._renderer.view)

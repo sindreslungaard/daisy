@@ -20,4 +20,9 @@ export default class Point {
         this._y = y
     }
 
+    public set(x: number, y: number) {
+        this._x = x
+        this._y = y
+    }
+
 }

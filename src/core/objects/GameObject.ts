@@ -18,6 +18,39 @@ export default class GameObject implements IDisposable {
 
     }
 
+    public get id(): number {
+        return this._id
+    }
+
+    public get x(): number {
+        return this._x
+    }
+
+    public set x(x: number) {
+        this._x = x
+    }
+
+    public get y(): number {
+        return this._y
+    }
+
+    public set y(y: number) {
+        this._y = y
+    }
+
+    public get h(): number {
+        return this._h
+    }
+
+    public set h(h: number) {
+        this._h = h
+    }
+
+    public setPosition(x: number, y: number) {
+        this._x = x
+        this._y = y
+    }
+
     public update(delta: number) {
         
     }

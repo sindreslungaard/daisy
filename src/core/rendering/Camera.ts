@@ -6,17 +6,21 @@ export default class Camera {
 
     private _scene: Scene
     private _position: Point
-
+    private _draggable: boolean
+    private _lastMouseDownPos: Point
     private _isDragging: boolean
 
-    constructor(scene: Scene, x: number = 0, y: number = 0) {
+    constructor(scene: Scene, draggable: boolean, x: number = 0, y: number = 0) {
 
         this._scene = scene
+        this._draggable = draggable
         this._position = new Point(0, 0)
+        this._lastMouseDownPos = new Point(0, 0)
 
         this._isDragging = false
 
         MouseEvents.onMouseDown.subscribe((sender, eventArgs) => {
+            this._lastMouseDownPos.set(eventArgs.x, eventArgs.y)
             this._isDragging = true
         })
 
@@ -25,8 +29,10 @@ export default class Camera {
         })
 
         MouseEvents.onMouseMoved.subscribe((sender, eventArgs) => {
-            if(this._isDragging)
-                this.move(eventArgs.x - this.position.x, eventArgs.y - this.position.y)
+            if(this._isDragging && this._draggable) {
+                this.move(eventArgs.x - this._lastMouseDownPos.x, eventArgs.y - this._lastMouseDownPos.y)
+                this._lastMouseDownPos.set(eventArgs.x, eventArgs.y)
+            }                
         })
 
     }
@@ -57,9 +63,17 @@ export default class Camera {
     }
 
     public move(x: number, y: number) {
+
         this._position.x += x
         this._position.y += y
 
+        this._scene.container.x = this._position.x
+        this._scene.container.y = this._position.y
+        
+    }
+
+    public setPosition(x: number, y: number) {
+        this._position.set(x, y)
         this._scene.container.x = this._position.x
         this._scene.container.y = this._position.y
     }

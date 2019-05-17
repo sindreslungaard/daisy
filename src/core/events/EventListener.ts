@@ -11,15 +11,15 @@ export default class EventListener {
     }
 
     private static onMouseDown(event: MouseEvent) {
-        MouseEvents.dispatch(new MouseDownEventArgs(event.x, event.y))
+        MouseEvents.dispatch(new MouseDownEventArgs(event.clientX, event.clientY))
     }
 
     private static onMouseUp(event: MouseEvent) {
-        MouseEvents.dispatch(new MouseUpEventArgs(event.x, event.y))
+        MouseEvents.dispatch(new MouseUpEventArgs(event.clientX, event.clientY))
     }
 
     private static onMouseMoved(event: MouseEvent) {
-        MouseEvents.dispatch(new MouseMovedEventArgs(event.x, event.y))
+        MouseEvents.dispatch(new MouseMovedEventArgs(event.clientX, event.clientY))
     }
 
 }
