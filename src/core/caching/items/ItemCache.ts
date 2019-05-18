@@ -1,20 +1,11 @@
-import { Texture, BaseTexture, Rectangle } from 'pixi.js';
-
-class ItemCachePart {
-    constructor(public states: Array<ItemCacheState>, public offsetX: number, public offsetY: number, public offsetPixelsX: number, public offsetPixelsY: number) {}
-}
-
-class ItemCacheState {
-    constructor(public textures: Array<Texture>, public animation: boolean, public animationFrameDelay: number) {}
-}
-
-class ItemCacheStruct {
-    constructor(public uid: string, public name: string, public description: string, public parts: Array<ItemCachePart>, public icon: Texture) {}
-}
+import { Texture, BaseTexture, Rectangle } from 'pixi.js'
+import CachedItemStruct from './CachedItemStruct'
+import CachedItemPart from './CachedItemPart'
+import CachedItemState from './CachedItemState'
 
 export default class ItemCache {
 
-    private static items: { [key: string]: ItemCacheStruct } = {}
+    private static _items: { [key: string]: CachedItemStruct } = {}
 
     public static add(spritesheetPath: string, dataPath: string) {
 
@@ -31,11 +22,11 @@ export default class ItemCache {
 
                     let icon = new Texture(texture, new Rectangle(itemData.icon.x, itemData.icon.y, itemData.icon.w, itemData.icon.h))
     
-                    let parts: Array<ItemCachePart> = []
+                    let parts: Array<CachedItemPart> = []
     
                     for(let part of itemData.parts) {
     
-                        let states: Array<ItemCacheState> = []
+                        let states: Array<CachedItemState> = []
     
                         for(let state of part.states) {
     
@@ -45,18 +36,18 @@ export default class ItemCache {
                                 sprites.push(new Texture(texture, new Rectangle(sprite.x, sprite.y, sprite.w, sprite.h)))
                             }
         
-                            states.push(new ItemCacheState(sprites, state.animation || false, state.animationFrameDelay || 0))
+                            states.push(new CachedItemState(sprites, state.animation || false, state.animationFrameDelay || 0))
         
                         }
     
-                        parts.push(new ItemCachePart(states, part.offsetPosition.x, part.offsetPosition.y, part.offsetPixels.x, part.offsetPixels.y))
+                        parts.push(new CachedItemPart(states, part.offsetPosition.x, part.offsetPosition.y, part.offsetPixels.x, part.offsetPixels.y))
     
                     }
     
-                    if(this.items[itemData.uid])
+                    if(this._items[itemData.uid])
                         throw new Error('Duplicate uid for item ' + itemData.uid)
     
-                    this.items[itemData.uid] = new ItemCacheStruct(itemData.uid, itemData.name, itemData.description, parts, icon)
+                    this._items[itemData.uid] = new CachedItemStruct(itemData.uid, itemData.name, itemData.description, parts, icon)
     
                 }
 
@@ -69,6 +60,10 @@ export default class ItemCache {
 
         })
 
+    }
+
+    public static get items(): { [key: string]: CachedItemStruct } {
+        return this._items
     }
 
 }
