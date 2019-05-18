@@ -4,10 +4,7 @@ import Layer from './Layer'
 import Camera from '../rendering/Camera'
 import Tile from '../objects/tiles/Tile'
 import { sortTiles, sortGameObjects } from '../../utils/sort'
-
-interface SceneConfiguration {
-    draggable: boolean
-}
+import Item from '../objects/items/Item'
 
 export default class Scene {
 
@@ -64,6 +61,14 @@ export default class Scene {
             this.container.removeChild(x.getContainer())
             return x !== layer
         })
+    }
+
+    public addItem(item: Item) {
+        item.addToScene(this)
+    }
+
+    public removeItem() {
+
     }
 
     update(delta: number) {
