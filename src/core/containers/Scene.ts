@@ -86,18 +86,6 @@ export default class Scene {
             if(a == b)
                 return 0
 
-            // Sort tiles separately, always at the bottom of the stack
-            if(a.gameObject instanceof Tile && b.gameObject instanceof Tile)
-                return sortTiles(a.gameObject, b.gameObject)
-
-            // a is tile but b is not, send a back
-            if(a.gameObject instanceof Tile)
-                return -1
-
-            // b is tile but a is not, send b back
-            if(b.gameObject instanceof Tile)
-                return 1
-
             // Sort the rest by their coordinates
             return sortGameObjects(a.gameObject, b.gameObject)
 
