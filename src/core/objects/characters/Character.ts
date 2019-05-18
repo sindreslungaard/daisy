@@ -37,6 +37,7 @@ export default class Character extends GameObject {
     }
 
     addToScene(scene: Scene) {
+
         this._parent = scene
 
         if(this._currentState) {
@@ -73,6 +74,8 @@ export default class Character extends GameObject {
         }
 
         let state = new AnimatedSprite(this, textures)
+        state.animationSpeed = 0.1
+        state.play()
 
         this._states.set(uid, state)
 

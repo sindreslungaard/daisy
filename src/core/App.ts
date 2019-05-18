@@ -7,7 +7,8 @@ export default class App {
     private _renderer: PIXI.Application
     private _scenes: Array<Scene>
 
-    constructor(width: number = window.innerWidth, height: number = window.innerHeight, backgroundColor: number = 0x000000) {
+    //constructor(width: number = window.innerWidth, height: number = window.innerHeight, backgroundColor: number = 0x000000) {
+    constructor({ width = window.innerWidth, height = window.innerHeight, background = 0x000000 }:{ width: number, height: number, background: number }) {
 
         this._scenes = []
 
@@ -17,7 +18,7 @@ export default class App {
         this._renderer = new PIXI.Application({
             width,
             height,
-            backgroundColor
+            backgroundColor: background
         })
         
         let element = document.createElement('div');
