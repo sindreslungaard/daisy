@@ -5,6 +5,8 @@ import Camera from '../rendering/Camera'
 import Tile from '../objects/tiles/Tile'
 import { sortTiles, sortGameObjects } from '../../utils/sort'
 import Item from '../objects/items/Item'
+import Character from '../objects/characters/Character'
+import GameObject from '../objects/GameObject';
 
 export default class Scene {
 
@@ -12,12 +14,14 @@ export default class Scene {
     private _container: Container
     private _layers: Array<Layer>
     private _camera: Camera
+    private _gameObjects: Array<GameObject>
 
     constructor({ draggable = true }: { draggable?: boolean }) {
 
         this._container = new Container()
         this._layers = []
         this._camera = new Camera(this, draggable, 0, 0)
+        this._gameObjects = []
 
     }
 
@@ -64,7 +68,13 @@ export default class Scene {
     }
 
     public addItem(item: Item) {
+        this._gameObjects.push(item)
         item.addToScene(this)
+    }
+
+    public addCharacter(character: Character) {
+        this._gameObjects.push(character)
+        character.addToScene(this)
     }
 
     public removeItem() {
@@ -76,6 +86,9 @@ export default class Scene {
         for(let layer of this.layers)
             layer.update(delta)
 
+        for(let gameObject of this._gameObjects)
+            gameObject.update(delta)
+
         this._container.children.sort((a: any, b: any) => {
 
             // Don't sort non gameobjects
@@ -85,6 +98,18 @@ export default class Scene {
             // Don't sort on self
             if(a == b)
                 return 0
+
+            // Sort tiles separately, always at the bottom of the stack
+            if(a.gameObject instanceof Tile && b.gameObject instanceof Tile)
+                return sortTiles(a.gameObject, b.gameObject)
+
+            // a is tile but b is not, send a back
+            if(a.gameObject instanceof Tile)
+                return -1
+
+            // b is tile but a is not, send b back
+            if(b.gameObject instanceof Tile)
+                return 1
 
             // Sort the rest by their coordinates
             return sortGameObjects(a.gameObject, b.gameObject)

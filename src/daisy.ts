@@ -8,6 +8,8 @@ export { default as Scene } from './core/containers/Scene'
 export { default as Layer } from './core/containers/Layer'
 export { default as TileMap } from './core/containers/TileMap'
 export { default as ItemCache } from './core/caching/items/ItemCache'
+export { default as CharacterCache } from './core/caching/characters/CharacterCache'
 export { default as Item } from './core/objects/items/Item'
+export { default as Character } from './core/objects/characters/Character'
 
 EventListener.listen()
