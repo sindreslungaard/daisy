@@ -3,6 +3,7 @@ import Item from './Item';
 import CachedItemPart from '../../caching/items/CachedItemPart'
 import Sprite from '../../rendering/Sprite'
 import Scene from '../../containers/Scene'
+import { ItemEvents, ItemClickedEventArgs } from '../../events/ItemEvents'
 
 export default class ItemPart extends GameObject {
 
@@ -33,12 +34,9 @@ export default class ItemPart extends GameObject {
                 sprite.anchor.set(0.5, 1)
                 sprite.interactive = true
 
-                /* sprite.on('click', () => {
-                    if(!Engine.getInstance()._game.draggingItem) {
-                        Engine.getInstance()._game.selectedItem = this.parent
-                        UserInterface.getInstance().onItemClicked(parent.uid)
-                    }
-                }) */
+                sprite.on('click', () => {
+                    ItemEvents.dispatch(new ItemClickedEventArgs(this._parent, this))
+                })
                 
                 this._states.push(sprite)
 
@@ -58,8 +56,8 @@ export default class ItemPart extends GameObject {
 
         for(let state of this._states) {
 
-            state.x = screenPos.x + this._data.offsetPixelsX
-            state.y = screenPos.y - this.h * 10 + this._data.offsetPixelsY
+            state.x = Math.round(screenPos.x + this._data.offsetPixelsX)
+            state.y = Math.round(screenPos.y - this.h * 10 + this._data.offsetPixelsY)
 
         }
 
@@ -102,8 +100,8 @@ export default class ItemPart extends GameObject {
             let screenPos = this._parent.parent.camera.tileToPixels(x + this._data.offsetX, y + this._data.offsetY)
 
             for(let sprite of this._states) {
-                sprite.x = screenPos.x + this._data.offsetPixelsX
-                sprite.y = screenPos.y - h * 10 + this._data.offsetPixelsY
+                sprite.x = Math.round(screenPos.x + this._data.offsetPixelsX)
+                sprite.y = Math.round(screenPos.y - h * 10 + this._data.offsetPixelsY)
             }
 
         }

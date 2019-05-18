@@ -67,15 +67,15 @@ export default class Camera {
         this._position.x += x
         this._position.y += y
 
-        this._scene.container.x = this._position.x
-        this._scene.container.y = this._position.y
+        this._scene.container.x = Math.round(this._position.x)
+        this._scene.container.y = Math.round(this._position.y)
         
     }
 
     public setPosition(x: number, y: number) {
         this._position.set(x, y)
-        this._scene.container.x = this._position.x
-        this._scene.container.y = this._position.y
+        this._scene.container.x = Math.round(this._position.x)
+        this._scene.container.y = Math.round(this._position.y)
     }
 
 }

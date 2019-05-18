@@ -27,7 +27,7 @@ export class MouseEvents {
             this._mouseUpEvent.dispatch(this, eventArgs)
             
         else if(eventArgs instanceof MouseMovedEventArgs)
-        this._mouseMovedEvent.dispatch(this, eventArgs)
+            this._mouseMovedEvent.dispatch(this, eventArgs)
 
     }
 
