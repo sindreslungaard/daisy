@@ -8,7 +8,7 @@ export default class App {
     private _scenes: Array<Scene>
 
     //constructor(width: number = window.innerWidth, height: number = window.innerHeight, backgroundColor: number = 0x000000) {
-    constructor({ width = window.innerWidth, height = window.innerHeight, background = 0x000000 }:{ width: number, height: number, background: number }) {
+    constructor({ width = window.innerWidth, height = window.innerHeight, background = 0x000000 }:{ width?: number, height?: number, background?: number }) {
 
         this._scenes = []
 
@@ -21,8 +21,9 @@ export default class App {
             backgroundColor: background
         })
         
-        let element = document.createElement('div');
-        document.body.appendChild(element);
+        let element = document.createElement('div')
+        element.setAttribute("id", "daisy")
+        document.body.appendChild(element)
 
         element.appendChild(this._renderer.view)
 
