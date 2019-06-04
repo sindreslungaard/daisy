@@ -1,7 +1,9 @@
 import EventListener from './core/events/EventListener'
 import * as EventRegistry from './core/events'
+import * as translate from './utils/translate'
 
 export const Events = EventRegistry
+export const Translate = translate
 export { default as App } from './core/App'
 export { default as preload } from './utils/preload'
 export { default as Scene } from './core/containers/Scene'
