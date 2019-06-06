@@ -13,5 +13,6 @@ export { default as ItemCache } from './core/caching/items/ItemCache'
 export { default as CharacterCache } from './core/caching/characters/CharacterCache'
 export { default as Item } from './core/objects/items/Item'
 export { default as Character } from './core/objects/characters/Character'
+export { default as TextureBuilder } from './utils/TextureBuilder'
 
 EventListener.listen()
