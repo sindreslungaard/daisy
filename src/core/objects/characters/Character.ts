@@ -1,6 +1,6 @@
 import GameObject from "../GameObject"
 import Scene from '../../containers/Scene'
-import { Sprite as SpriteRender, Texture, BaseTexture, Rectangle, AnimatedSprite as AnimatedSpriteRender } from 'pixi.js'
+import { Sprite as SpriteRender, Texture, BaseTexture, Rectangle, AnimatedSprite as AnimatedSpriteRender, DisplayObject } from 'pixi.js'
 import Sprite from '../../rendering/Sprite'
 import AnimatedSprite from '../../rendering/AnimatedSprite'
 import CharacterCache from '../../caching/characters/CharacterCache'
@@ -91,8 +91,13 @@ export default class Character extends GameObject {
 
         let newState = this._states.get(state)
 
-        if(newState === this._currentState)
+        if(!newState || newState === this._currentState)
             return
+
+        if(this._currentState) {
+            newState.x = this._currentState.x
+            newState.y = this._currentState.y
+        }
 
         if(this._currentState && this._parent)
             this._parent.container.removeChild(this._currentState)
