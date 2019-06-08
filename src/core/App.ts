@@ -4,7 +4,7 @@ import { MouseEvents, MouseMovedEventArgs } from './events/MouseEvents';
 
 export default class App {
 
-    private _renderer: PIXI.Application
+    private static _renderer: PIXI.Application
     private _scenes: Array<Scene>
 
     //constructor(width: number = window.innerWidth, height: number = window.innerHeight, backgroundColor: number = 0x000000) {
@@ -15,7 +15,7 @@ export default class App {
         // Preserve quality of sprites when scaled
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-        this._renderer = new PIXI.Application({
+        App._renderer = new PIXI.Application({
             width,
             height,
             backgroundColor: background
@@ -25,14 +25,18 @@ export default class App {
         element.setAttribute("id", "daisy")
         document.body.appendChild(element)
 
-        element.appendChild(this._renderer.view)
+        element.appendChild(App._renderer.view)
 
-        this._renderer.ticker.add(this.update.bind(this))
+        App._renderer.ticker.add(this.update.bind(this))
 
     }
 
+    static get renderer(): PIXI.Application {
+        return App._renderer
+    }
+
     get renderer(): PIXI.Application {
-        return this._renderer
+        return App._renderer
     }
 
     get scenes(): Array<Scene> {
@@ -42,12 +46,12 @@ export default class App {
     public addScene(scene: Scene) {
         scene.parent = this
         this._scenes.push(scene)
-        this._renderer.stage.addChild(scene.container)
+        App._renderer.stage.addChild(scene.container)
     }
 
     public removeScene(scene: Scene) {
         this._scenes = this._scenes.filter(x => {
-            this._renderer.stage.removeChild(x.container)
+            App._renderer.stage.removeChild(x.container)
             return x !== scene
         })
     }
@@ -55,7 +59,7 @@ export default class App {
     public makeSceneActive(scene: Scene) {
         this._scenes.map(x => {
             if(x !== scene)
-                this._renderer.stage.removeChild(x.container)
+                App._renderer.stage.removeChild(x.container)
         })
     }
 

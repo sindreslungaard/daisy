@@ -1,6 +1,5 @@
-import { Sprite, Container, SCALE_MODES, Renderer, Rectangle, BaseTexture, Texture } from 'pixi.js'
-
-let renderer = new Renderer()
+import { Sprite, Container, SCALE_MODES, Renderer, Rectangle, BaseTexture, Texture, Loader } from 'pixi.js'
+import App from '../core/App'
 
 export default class TextureBuilder {
 
@@ -9,6 +8,9 @@ export default class TextureBuilder {
     private _container: Container
 
     constructor(width: number, height: number) {
+
+        if(!App.renderer)
+            throw new Error('Daisy.App must be initialized in order for TextureBuilder to use its renderer')
 
         this._width = width
         this._height = height
@@ -22,12 +24,12 @@ export default class TextureBuilder {
         sprite.y = y
     }
 
-    public addTexture(baseTexture: BaseTexture, fromX: number, fromY: number, toX: number, toY: number) {
-        this.addSprite(new Sprite(new Texture(baseTexture, new Rectangle(fromX, fromY, toX, toY))))
+    public addTexture(textureId: string, fromX: number, fromY: number, toX: number, toY: number) {
+        this.addSprite(new Sprite(new Texture(Loader.shared.resources[textureId].texture.baseTexture, new Rectangle(fromX, fromY, toX, toY))))
     }
 
     public generateTexture() {
-        return renderer.generateTexture(this._container, SCALE_MODES.NEAREST, 1)  
+        return App.renderer.renderer.generateTexture(this._container, SCALE_MODES.NEAREST, 1)  
     }
 
     public generateSprite() {
