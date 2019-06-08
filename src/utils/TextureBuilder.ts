@@ -18,21 +18,28 @@ export default class TextureBuilder {
 
     }
 
-    public addSprite(sprite: Sprite, x: number = 0, y: number = 0) {
+    public addSprite(sprite: Sprite, x: number = 0, y: number = 0): Sprite {
         this._container.addChild(sprite)
         sprite.x = x
         sprite.y = y
+        return sprite
     }
 
-    public addTexture(textureId: string, fromX: number, fromY: number, toX: number, toY: number) {
-        this.addSprite(new Sprite(new Texture(Loader.shared.resources[textureId].texture.baseTexture, new Rectangle(fromX, fromY, toX, toY))))
+    public addTexture(textureId: string, x: number, y: number, fromX: number, fromY: number, toX: number, toY: number, tint?: number): Sprite {
+
+        let sprite = new Sprite(new Texture(Loader.shared.resources[textureId].texture.baseTexture, new Rectangle(fromX, fromY, toX, toY)))
+        if(tint)
+            sprite.tint = tint
+        this.addSprite(sprite, x, y)
+        return sprite
+
     }
 
-    public generateTexture() {
+    public generateTexture(): Texture {
         return App.renderer.renderer.generateTexture(this._container, SCALE_MODES.NEAREST, 1)  
     }
 
-    public generateSprite() {
+    public generateSprite(): Sprite {
         return new Sprite(this.generateTexture())
     }
 
