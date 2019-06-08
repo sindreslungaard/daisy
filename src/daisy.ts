@@ -4,6 +4,7 @@ import * as translate from './utils/translate'
 
 export const Events = EventRegistry
 export const Translate = translate
+export { Loader, Texture, BaseTexture, Sprite } from 'pixi.js'
 export { default as App } from './core/App'
 export { default as preload } from './utils/preload'
 export { default as Scene } from './core/containers/Scene'
