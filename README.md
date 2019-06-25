@@ -63,7 +63,7 @@ import Daisy from 'daisy'
     let twoTilesCombined = new Daisy.TextureBuilder(64, 110)
     twoTilesCombined.addTexture('tile.png', 10, 20, 0, 0, 20, 20)
     twoTilesCombined.addTexture('tile.png', 0, 30, 0, 0, 50, 20)
-    let sprite = twoTilesCombinedt.generateSprite()
+    let sprite = twoTilesCombined.generateSprite()
     
     // render the above generated sprite
     app.renderer.stage.addChild(sprite)
