@@ -27,11 +27,12 @@ import Daisy from 'daisy'
     })
 
     // new scene, objects and characters will be added to it
+    // make the scene's camera draggable, letting you move everything in the scene around while dragging
     const room = new Daisy.Scene({
         draggable: true
     })
 
-    // make the scene's camera draggable, letting you move everything in the scene around while dragging
+    // move the scene to center of screen
     room.camera.setPosition(window.innerWidth / 2, window.innerHeight / 2)
 
     // add tiles to the scene
