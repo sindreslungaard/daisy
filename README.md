@@ -97,6 +97,9 @@ import Daisy from 'daisy'
 
     // finally add the scene to the engine
     app.addScene(room)
+    
+    // slide the character from x: 0, y: 0, h: 0 to x: 1, x: 1, h: 1
+    character.slide(0, 0, 1, 1, 1, 1)
 
 })()
 ```
