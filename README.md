@@ -2,7 +2,7 @@
 Daisy is an isometric game engine using WebGL. No formal documentation provided at this time, but feel free to look at the example below for some insight in to how it works.
 
 ```javascript
-import daisy from 'daisy'
+import Daisy from 'daisy'
 
 (async () => {
 
