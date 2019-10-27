@@ -65,6 +65,10 @@ export default class ItemPart extends GameObject {
 
     }
 
+    public removeFromScene(scene: Scene) {
+         scene.container.removeChild(this._states[this._currentState])
+    }
+
     public setState(state: number) {
 
         if(state < 0 || state > this.states.length - 1)
@@ -97,7 +101,7 @@ export default class ItemPart extends GameObject {
         
         if(this._parent.parent) {
 
-            let screenPos = this._parent.parent.camera.tileToPixels(x + this._data.offsetX, y + this._data.offsetY)
+            let screenPos = this._parent.parent.camera.tileToPixels(this.x, this.y)
 
             for(let sprite of this._states) {
                 sprite.x = Math.round(screenPos.x + this._data.offsetPixelsX)
@@ -115,13 +119,6 @@ export default class ItemPart extends GameObject {
             else
                 sprite.scale.x = 1
         }
-    }
-
-    public remove() {
-        if(!this._parent.parent)
-            return
-
-        this._parent.parent.container.removeChild(this._states[this._currentState])
     }
 
     public getCurrentState() {

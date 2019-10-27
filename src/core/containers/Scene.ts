@@ -77,8 +77,9 @@ export default class Scene {
         character.addToScene(this)
     }
 
-    public removeItem() {
-
+    public removeItem(item: Item) {
+        this._gameObjects = this._gameObjects.filter(x => x !== item)
+        item.removeFromScene(this)
     }
 
     update(delta: number) {

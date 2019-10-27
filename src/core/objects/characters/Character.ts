@@ -114,10 +114,12 @@ export default class Character extends GameObject {
 
     public slide(fromX: number, fromY: number, fromH: number, toX: number, toY: number, toH: number) {
 
+        this.x = toX
+        this.y = toY
+        this.h = toH
+
+        // don't add motion before the stage is ready but store the new position above
         if(!this._parent) {
-            this.x = toX
-            this.y = toY
-            this.h = toH
             return
         }
 

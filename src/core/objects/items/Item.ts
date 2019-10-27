@@ -42,6 +42,14 @@ export default class Item extends GameObject {
         this._parent = scene
     }
 
+    get uid(): string {
+        return this._uid
+    }
+
+    get name(): string {
+        return this._name
+    }
+
     get itemParts(): Array<ItemPart> {
         return this._itemParts
     }
@@ -51,8 +59,15 @@ export default class Item extends GameObject {
     }
 
     addToScene(scene: Scene) {
+        this._parent = scene
         for(let part of this._itemParts) {
             part.addToScene(scene)
+        }
+    }
+
+    removeFromScene(scene: Scene) {
+        for(let part of this._itemParts) {
+            part.removeFromScene(scene)
         }
     }
 
@@ -94,12 +109,6 @@ export default class Item extends GameObject {
     public rotate() {
         for(let part of this._itemParts) {
             part.rotate()
-        }
-    }
-
-    public remove() {
-        for(let part of this._itemParts) {
-            part.remove()
         }
     }
 
