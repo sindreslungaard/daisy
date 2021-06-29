@@ -1,5 +1,5 @@
 # daisy
-Daisy is an isometric game engine using WebGL.
+Daisy is an isometric game engine using WebGL. It was tailored for a private project although you could use it for similar games.
 
 Example:
 
